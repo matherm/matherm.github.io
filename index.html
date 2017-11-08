@@ -239,6 +239,319 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/08/install-theano-cuda-arch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matthias Hermann">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Matthias-Hermann-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/08/install-theano-cuda-arch/" itemprop="url">How-To | Install Theano with Cuda-Support in Anaconda (Arch-Linux)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-08T09:47:27+01:00">
+                2017-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/How-To/" itemprop="url" rel="index">
+                    <span itemprop="name">How-To</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Install-Anaconda"><a href="#Install-Anaconda" class="headerlink" title="Install Anaconda"></a>Install Anaconda</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pacman -S anaconda</div></pre></td></tr></table></figure>
+<h2 id="Ignore-Anaconda-Upgrades-otherwise-it-will-overwrite-all-changes"><a href="#Ignore-Anaconda-Upgrades-otherwise-it-will-overwrite-all-changes" class="headerlink" title="Ignore Anaconda-Upgrades (otherwise it will overwrite all changes)"></a>Ignore Anaconda-Upgrades (otherwise it will overwrite all changes)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pacman -Syu --ignore anaconda</div><div class="line">yaourt -Syu --aur --ignore anaconda</div></pre></td></tr></table></figure>
+<h2 id="Create-new-Python-3-5-Environment"><a href="#Create-new-Python-3-5-Environment" class="headerlink" title="Create new Python 3.5 Environment"></a>Create new Python 3.5 Environment</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo conda create -n py35 python=3.5 anaconda</div></pre></td></tr></table></figure>
+<h2 id="Change-permissions-of-anaconda-so-that-you-can-install-without-root"><a href="#Change-permissions-of-anaconda-so-that-you-can-install-without-root" class="headerlink" title="Change permissions of anaconda (so that you can install without root)"></a>Change permissions of anaconda (so that you can install without root)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chown -R [User] /opt/anaconda</div></pre></td></tr></table></figure>
+<h2 id="Install-Theano"><a href="#Install-Theano" class="headerlink" title="Install Theano"></a>Install Theano</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> activate py35</div><div class="line">conda install theano</div></pre></td></tr></table></figure>
+<h2 id="Install-CUDA-Make-sure-tmp-is-large-enough"><a href="#Install-CUDA-Make-sure-tmp-is-large-enough" class="headerlink" title="Install CUDA (Make sure /tmp is large enough)"></a>Install CUDA (Make sure /tmp is large enough)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yaourt -Syu --aur cuda-8.0</div></pre></td></tr></table></figure>
+<h2 id="Install-cuDnn"><a href="#Install-cuDnn" class="headerlink" title="Install cuDnn"></a>Install cuDnn</h2><ul>
+<li><p>Download<br><a href="https://developer.nvidia.com/compute/machine-learning/cudnn/secure/v5.1/prod_20161129/8.0/cudnn-8.0-linux-x64-v5.1-tgz" target="_blank" rel="external">cuDnn 5.1 for Cuda 8.0</a></p>
+</li>
+<li><p>Install</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">tar -xvzf cudnn-8.0-linux-x64-v5.1.tgz</div><div class="line">mv ./cuda/include/* /opt/cuda/include</div><div class="line">mv ./cuda/lib64/* /opt/cuda/lib64</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Create-theanorc-in-theanorc"><a href="#Create-theanorc-in-theanorc" class="headerlink" title="Create .theanorc (in ~/.theanorc)"></a>Create .theanorc (in ~/.theanorc)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[global]</div><div class="line">device=cuda</div><div class="line">floatX=float32</div><div class="line">cuda.root=/opt/cuda</div><div class="line">## Set explicitly compiler in case gcc &gt;= 6 is system default</div><div class="line">gcc.cxxflags=-Wnarrowing</div><div class="line">cxx=/usr/bin/g++-5</div></pre></td></tr></table></figure>
+<h2 id="Install-Jupyter-Extensions"><a href="#Install-Jupyter-Extensions" class="headerlink" title="Install Jupyter Extensions"></a>Install Jupyter Extensions</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">conda install -c conda-forge jupyter_contrib_nbextensions</div><div class="line">jupyter contrib nbextension install --user</div><div class="line"></div><div class="line">/opt/anaconda/bin/jupyter notebook</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/08/install-arch-linux-with-nvidia/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matthias Hermann">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Matthias-Hermann-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/08/install-arch-linux-with-nvidia/" itemprop="url">How-To | Install Arch Linux with Nvidia GeForce 1080Ti</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-08T09:43:38+01:00">
+                2017-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/How-To/" itemprop="url" rel="index">
+                    <span itemprop="name">How-To</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Download-Arch-and-Verify-ISO"><a href="#Download-Arch-and-Verify-ISO" class="headerlink" title="Download Arch and Verify ISO"></a>Download Arch and Verify ISO</h2><p><a href="https://www.archlinux.org/download/" target="_blank" rel="external">https://www.archlinux.org/download/</a><br>pg —keyserver-options auto-key-retrieve —verify archlinux-<version>-x86_64.iso.sig</version></p>
+<h2 id="Create-Installation-Medium"><a href="#Create-Installation-Medium" class="headerlink" title="Create Installation Medium"></a>Create Installation Medium</h2><p>dd bs=4M if=/path/to/archlinux.iso of=/dev/sdx status=progress &amp;&amp; sync</p>
+<h2 id="Arch-Installation-Guide"><a href="#Arch-Installation-Guide" class="headerlink" title="Arch Installation Guide"></a>Arch Installation Guide</h2><p><a href="https://wiki.archlinux.org/index.php/installation_guide#Install_the_base_packages" target="_blank" rel="external">https://wiki.archlinux.org/index.php/installation_guide#Install_the_base_packages</a></p>
+<h3 id="Partition-Scheme"><a href="#Partition-Scheme" class="headerlink" title="Partition Scheme"></a>Partition Scheme</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/boot	/dev/sdx1	EFI System Partition (EF00)	    More than 512 MiB</div><div class="line">/	    /dev/sdx2	Linux	                        70 GB</div><div class="line">/home	/dev/sdx4	Linux	                        Rest</div></pre></td></tr></table></figure>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Partition number (3-128, default 3):  3 </div><div class="line">First sector (34-15728606, default = 4605952) or &#123;+-&#125;size&#123;KMGTP&#125;: </div><div class="line">Last sector (4605952-15728606, default = 15728606) or &#123;+-&#125;size&#123;KMGTP&#125;: +4G</div><div class="line">Current <span class="built_in">type</span> is <span class="string">'Linux filesystem'</span></div><div class="line">Hex code or GUID (L to show codes, Enter = 8300): 8300</div><div class="line">Changed <span class="built_in">type</span> of partition to <span class="string">'Linux filesystem</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>Make Swap-File</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">fallocate -l 8GB /swapfile</div><div class="line">chmod 600 /swapfile</div><div class="line">mkswap /swapfile</div><div class="line">swapon /swapfile</div><div class="line"></div><div class="line">~ vim /etc/fstab</div><div class="line">    /swapfile none swap defaults 0 0</div></pre></td></tr></table></figure>
+</li>
+<li><p>Installation of KDE Plasma (NVIDIA)<br><a href="https://sadanand-singh.github.io/posts/completesetuparchplasma/" target="_blank" rel="external">https://sadanand-singh.github.io/posts/completesetuparchplasma/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ pacman -S xorg-server nvidia nvidia-libgl nvidia-settings mesa</div><div class="line">$ pacman -S ttf-hack ttf-anonymous-pro</div><div class="line">$ pacman -S ttf-dejavu ttf-freefont ttf-liberation</div><div class="line">$ pacman -S plasma-meta dolphin kdialog kfind</div><div class="line">$ pacman -S konsole gwenview okular spectacle kio-extras</div><div class="line">$ pacman -S kompare dolphin-plugins kwallet kwalletmanager</div><div class="line">$ pacman -S ark yakuake flite</div></pre></td></tr></table></figure>
+</li>
+<li><p>SDDM</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ vim /etc/sddm.conf</div><div class="line"></div><div class="line">....</div><div class="line">[Theme]</div><div class="line"><span class="comment"># Current theme name</span></div><div class="line">Current=breeze</div><div class="line"></div><div class="line"><span class="comment"># Cursor theme used in the greeter</span></div><div class="line">CursorTheme=breeze_cursors</div><div class="line">...</div><div class="line"></div><div class="line">$ systemctl <span class="built_in">enable</span> sddm</div><div class="line">$ reboot</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/27/plotting-functions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -607,7 +920,7 @@ H(X) = H_b(p) = -p \log_2 p -(1-p) \log_2 (1-p)</script>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -618,7 +931,7 @@ H(X) = H_b(p) = -p \log_2 p -(1-p) \log_2 (1-p)</script>
               
               <div class="site-state-item site-state-categories">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 
               </div>
@@ -629,7 +942,7 @@ H(X) = H_b(p) = -p \log_2 p -(1-p) \log_2 (1-p)</script>
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
