@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python CV OpenCV," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="As I love playing darts, especially in summer, I often thought about some automatic counting system.Of course, the easiest way would be just buying an electronic darts board, but for a steel darts pla">
+<meta name="keywords" content="Python CV OpenCV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The score is 9 - Some fun with Computer Vision in Python">
+<meta property="og:url" content="http://yoursite.com/2018/02/02/fun-with-computer-vison/index.html">
+<meta property="og:site_name" content="Matthias-Hermann-Blog">
+<meta property="og:description" content="As I love playing darts, especially in summer, I often thought about some automatic counting system.Of course, the easiest way would be just buying an electronic darts board, but for a steel darts pla">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/images/dart-14.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-1.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-2.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-3.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-4.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-5.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-6.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-7.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-8.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-9.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-11.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-10.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-12.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-13.png">
+<meta property="og:image" content="http://yoursite.com/images/dart-14.png">
+<meta property="og:updated_time" content="2018-02-06T19:51:04.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The score is 9 - Some fun with Computer Vision in Python">
+<meta name="twitter:description" content="As I love playing darts, especially in summer, I often thought about some automatic counting system.Of course, the easiest way would be just buying an electronic darts board, but for a steel darts pla">
+<meta name="twitter:image" content="http://yoursite.com/images/dart-14.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/02/fun-with-computer-vison/"/>
+
+
+
+
+
+  <title>The score is 9 - Some fun with Computer Vision in Python | Matthias-Hermann-Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Matthias-Hermann-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Some Random samples from a computer + data scientist.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/02/fun-with-computer-vison/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Matthias Hermann">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Matthias-Hermann-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">The score is 9 - Some fun with Computer Vision in Python</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-02T21:57:50+01:00">
+                2018-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Vision/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Vision</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Vision/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>As I love playing darts, especially in summer, I often thought about some automatic counting system.<br>Of course, the easiest way would be just buying an electronic darts board, but for a steel darts player this is not an option.<br>Second approach would be some fancy laser scanning hacking or building circuits into the dart board.<br>But I’m not that familiar with building circuits and laser scanning is really prone to environmental influences.<br>And to be onest, locating the arrow with a well positioned laser scanner would be too easy.<br><img src="/images/dart-14.png" alt=""><br>We are goint to take the rocky road and try our luck with a visual approach..</p>
+<a id="more"></a> 
+<p>Visual approach means that our input is a camera recorded video.<br>Thus, The first thing we need is a video…</p>
+
+<div id="ytplayer"></div>
+
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // Replace the 'ytplayer' element with an <iframe> and
+  // YouTube player after the API code downloads.
+  var player;
+  function onYouTubePlayerAPIReady() {
+    player = new YT.Player('ytplayer', {
+      height: '360',
+      width: '640',
+      videoId: '3GUDw6yr9NM'
+    });
+  }
+</script>
+
+<p>I want to thank Jacob D. Delaney for his very shiny work, which inspired me with some useful tricks.<br>You can find a copy of his project work <a href="https://web.stanford.edu/class/ee368/Project_Autumn_1516/Reports/Delaney.pdf" target="_blank" rel="external">here</a>.</p>
+<h2 id="The-setup"><a href="#The-setup" class="headerlink" title="The setup"></a>The setup</h2><ul>
+<li>Python 3.5</li>
+<li>OpenCV for Python</li>
+</ul>
+<p><strong><em>If you want to have a deeper look into the code, a good starting point might be the <a href="https://github.com/matherm/matherm.github.io/tree/master/code/dart/dart.ipynb" target="_blank" rel="external">IPython Notebook</a></em></strong></p>
+<p>This can be launched locally with Python and Jupyter:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jupyter notebook</div></pre></td></tr></table></figure></p>
+<p><em>The full project can be found <a href="https://github.com/matherm/matherm.github.io/tree/master/code/dart" target="_blank" rel="external">here</a></em><br><em>(Please note that this is not likely to run as the project is messed up a bit</em></p>
+<h2 id="The-starting-point"><a href="#The-starting-point" class="headerlink" title="The starting point"></a>The starting point</h2><p>The first we need to to is reading an image from camera. This can be easily done with the following code:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /dart.py</span></div><div class="line"></div><div class="line">IM,BASE_FRAME_GRAY = Image_Tools.readImage(<span class="string">'./images/vid2.png'</span>,(<span class="number">1080</span>,<span class="number">1920</span>))</div><div class="line">IM2,BASE_FRAME_GRAY2 = Image_Tools.readImage(<span class="string">'./images/vid3.png'</span>,(<span class="number">1080</span>,<span class="number">1920</span>))</div><div class="line">GUI.imShow(IM)</div></pre></td></tr></table></figure></p>
+<p><img src="/images/dart-1.png" alt=""><br>You might wonder what these nasty yellow post-its are doing. We’ll come to this later in the post <em>(Hint: Orientation)</em></p>
+<h2 id="Computing-the-dart-bounding-box"><a href="#Computing-the-dart-bounding-box" class="headerlink" title="Computing the dart bounding box"></a>Computing the dart bounding box</h2><p>In the second step I want to find my region of interest i.e. the dart board. There are various ways to do thi, but the most intuitive way might be using some kind of a template and search the image space for it.<br>But we will take a different technique and search for red and green pixels.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /utils/dartboard_detector.py</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detectDartboard</span><span class="params">(self,IM)</span>:</span></div><div class="line">        IM_blur = cv2.blur(IM,Dartboard_Detector.ENV[<span class="string">'DETECTION_BLUR'</span>])</div><div class="line">        <span class="comment">#convert to HSV</span></div><div class="line">        base_frame_hsv = cv2.cvtColor(IM_blur, cv2.COLOR_BGR2HSV)</div><div class="line">        <span class="comment"># Extract Green</span></div><div class="line">        green_thres_low = int(Dartboard_Detector.ENV[<span class="string">'DETECTION_GREEN_LOW'</span>] /<span class="number">255.</span> * <span class="number">180</span>)</div><div class="line">        green_thres_high = int(Dartboard_Detector.ENV[<span class="string">'DETECTION_GREEN_HIGH'</span>] /<span class="number">255.</span> * <span class="number">180</span>)</div><div class="line">        green_min = np.array([green_thres_low, <span class="number">100</span>, <span class="number">100</span>],np.uint8)</div><div class="line">        green_max = np.array([green_thres_high, <span class="number">255</span>, <span class="number">255</span>],np.uint8)</div><div class="line">        frame_threshed_green = cv2.inRange(base_frame_hsv, green_min, green_max)</div><div class="line">        <span class="comment">#Extract Red</span></div><div class="line">        red_thres_low = int(Dartboard_Detector.ENV[<span class="string">'DETECTION_RED_LOW'</span>] /<span class="number">255.</span> * <span class="number">180</span>)</div><div class="line">        red_thres_high = int(Dartboard_Detector.ENV[<span class="string">'DETECTION_RED_HIGH'</span>] /<span class="number">255.</span> * <span class="number">180</span>)</div><div class="line">        red_min = np.array([red_thres_low, <span class="number">100</span>, <span class="number">100</span>],np.uint8)</div><div class="line">        red_max = np.array([red_thres_high, <span class="number">255</span>, <span class="number">255</span>],np.uint8)</div><div class="line">        frame_threshed_red = cv2.inRange(base_frame_hsv, red_min, red_max)</div><div class="line">        <span class="comment">#Combine</span></div><div class="line">        combined = frame_threshed_red + frame_threshed_green</div><div class="line">        ...</div></pre></td></tr></table></figure>
+<p>As a result we get our region of interest.<br><img src="/images/dart-2.png" alt=""></p>
+<h2 id="Waiting-for-changes"><a href="#Waiting-for-changes" class="headerlink" title="Waiting for changes"></a>Waiting for changes</h2><p>When we have our region of interest we can start monitoring the video stream for changes.<br>This is typically done through computing difference images.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /utils/difference_detector.py</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">computeDifference</span><span class="params">(self,grey1,grey2)</span>:</span></div><div class="line">        <span class="comment"># blur</span></div><div class="line">        blur = Difference_Detector.ENV[<span class="string">'BLUR'</span>]</div><div class="line">        grey2 = cv2.blur(grey2,blur)</div><div class="line">        grey1 = cv2.blur(grey1,blur)</div><div class="line">        <span class="comment">#normalize</span></div><div class="line">        grey1 = cv2.equalizeHist(grey1)</div><div class="line">        grey2 = cv2.equalizeHist(grey2)</div><div class="line">        clahe = cv2.createCLAHE(Difference_Detector.ENV[<span class="string">'CLAHE_CLIP_LIMIT'</span>], Difference_Detector.ENV[<span class="string">'CLAHE_TILE_SIZE'</span>])</div><div class="line">        <span class="comment">#clahe</span></div><div class="line">        grey1 = clahe.apply(grey1)</div><div class="line">        grey2 = clahe.apply(grey2)</div><div class="line">        <span class="comment">#diff</span></div><div class="line">        diff = cv2.subtract(grey2,grey1) + cv2.subtract(grey1,grey2)</div><div class="line">        ret2,dif_thred = cv2.threshold(diff,Difference_Detector.ENV[<span class="string">'BINARY_THRESHOLD_MIN'</span>],Difference_Detector.ENV[<span class="string">'BINARY_THRESHOLD_MAX'</span>],cv2.THRESH_BINARY)</div><div class="line">        <span class="keyword">return</span> dif_thred,grey1,grey2,diff</div></pre></td></tr></table></figure>
+<p>The result of the detection looks like this:<br><img src="/images/dart-3.png" alt=""><br><img src="/images/dart-4.png" alt=""></p>
+<h2 id="Detecting-arrows"><a href="#Detecting-arrows" class="headerlink" title="Detecting arrows"></a>Detecting arrows</h2><p>Now, we know that the video has changed. The obvious next step is to locate the arrow within the image.<br>With the API this can be easily done by the following lines of code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /dart.py</span></div><div class="line"></div><div class="line">arrow_detector = Arrow_Detector()</div><div class="line">IM_arrow_closed,arrow_x1,arrow_y1,xxx,yyy,www,hhh, line_image,apex_image = arrow_detector.detectArrow(IM_ROI_difference,IM_ROI2_grey)</div><div class="line">GUI.imShow(apex_image)</div><div class="line">GUI.imShow(IM_arrow_closed)H_BINARY)</div><div class="line">        <span class="keyword">return</span> dif_thred,grey1,grey2,diff</div></pre></td></tr></table></figure>
+<p><img src="/images/dart-5.png" alt=""><br><img src="/images/dart-6.png" alt=""></p>
+<p>A bit more difficult (maybe the most difficult thing within this project at all) is to find the apex of an arrow.<br>Depending on the resolution and light condition the apex is even invisible to humans.</p>
+<p>I take the same approach proposed by Jacob D. Delaney and first compute a line through the hole arrow and afterwards extrapolate that line until the last pixel of the arrow is reached.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /utils/arrow_detector.py</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">detectArrow</span><span class="params">(self,diff_image,IM_ROI2_grey)</span>:</span></div><div class="line">        kernel_size = Arrow_Detector.ENV[<span class="string">'DETECTION_KERNEL_SIZE'</span>]</div><div class="line">        kernel = np.zeros(kernel_size,np.uint8)</div><div class="line">        kernel_thickness = Arrow_Detector.ENV[<span class="string">'DETECTION_KERNEL_THICKNESS'</span>]</div><div class="line">        kernel[:,(kernel.shape[<span class="number">1</span>]//<span class="number">2</span>)-kernel_thickness:(kernel.shape[<span class="number">1</span>]//<span class="number">2</span>)+kernel_thickness] = <span class="number">1</span></div><div class="line">        max_contour_length,max_angle,max_contour,max_img = self.computeArrowOrientation(diff_image,range(<span class="number">0</span>,<span class="number">180</span>,Arrow_Detector.ENV[<span class="string">'DETECTION_RADIAL_STEP'</span>]),kernel)</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> len(max_contour) == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>,<span class="keyword">None</span>,<span class="keyword">None</span>,<span class="keyword">None</span>,<span class="keyword">None</span>,<span class="keyword">None</span>,<span class="keyword">None</span></div><div class="line">                </div><div class="line">        xx,yy,ww,hh = cv2.boundingRect(max_contour)</div><div class="line"></div><div class="line">        <span class="comment">#Detect line of arrow</span></div><div class="line">        arrow_x1,arrow_y1,line_image_peak,h,v = self._detectArrowLine(max_img,max_contour,xx,yy,ww,hh) </div><div class="line">        </div><div class="line">        <span class="comment">#Detect apex of arrow</span></div><div class="line">        arrow_x1,arrow_y1,IM_apex = self._detectApex(IM_ROI2_grey,line_image_peak,arrow_x1,arrow_y1,h,v)</div><div class="line"></div><div class="line">        <span class="keyword">return</span> max_img,arrow_x1,arrow_y1,xx,yy,ww,hh,line_image_peak,IM_apex</div></pre></td></tr></table></figure>
+<p>This is very likely to fail most the times and you would need to take a more robost approach for a real system, but here it works as you can see in the following picture.</p>
+<p><img src="/images/dart-7.png" alt=""></p>
+<p><em>In a field deployment you would net to combine the information of several subsequent images and estimate the location of the apex through a state filter</em></p>
+<h2 id="Detect-scoring-zones"><a href="#Detect-scoring-zones" class="headerlink" title="Detect scoring zones"></a>Detect scoring zones</h2><p>Until now we only know very little about the dart game itself. We only know something about an arrow and a dart board somwhere in the image. The more interessting thing are the scoring zones. There are hundreds of ways to compute this, but we’ll take the following simple approach:</p>
+<ol>
+<li>Compute the orientation of the dart board</li>
+<li>Compute a transform of the dart board to a perfect plane</li>
+<li>Compute the geometry of the dart board within the plane (triangles and circles of the dart board)</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /dart.py</span></div><div class="line"></div><div class="line">    dartboard_detector = Dartboard_Detector()</div><div class="line">    GUI.imShow(IM_ROI)</div><div class="line">    IM_ROI_thres_color,IM_ROI_thres_color_closed,contours_structure = dartboard_detector.getOrientation(IM_ROI,IM_ROI_board)</div><div class="line">    GUI.imShow(Image_Tools.debugContours(IM_ROI_thres_color,contours_structure))</div><div class="line"></div><div class="line">    dartboard = Dartboard()</div><div class="line">    M, src_points = dartboard.computePerspectiveTransformation(contours_structure,IM_ROI_grey,IM_ROI_red)</div></pre></td></tr></table></figure>
+<p><img src="/images/dart-8.png" alt=""><br><img src="/images/dart-9.png" alt=""><br><img src="/images/dart-11.png" alt=""></p>
+<p>Next step is transforming the whole image to the plane. The result speaks for itself:<br><img src="/images/dart-10.png" alt=""></p>
+<p>The last step is computing the geometry of the dart board artificially.<br>This can be done by some usual drawing.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /utils/dartboard.py</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">drawDartboard</span><span class="params">(self)</span>:</span></div><div class="line">        IM = np.zeros(Dartboard.ENV[<span class="string">'DART_BOARD_TARGET_DIMENSION'</span>],<span class="string">"uint8"</span>)</div><div class="line">        offset = Dartboard.ENV[<span class="string">'DART_BOARD_TARGET_OFFSET'</span>]</div><div class="line">        center = (IM.shape[<span class="number">0</span>] // <span class="number">2</span>,IM.shape[<span class="number">1</span>] // <span class="number">2</span>)</div><div class="line">        size_dartboard = <span class="number">3400</span> + offset</div><div class="line">        scale = IM.shape[<span class="number">0</span>] / size_dartboard</div><div class="line">        rad_board = int(<span class="number">3400</span> / <span class="number">2</span> * scale)</div><div class="line">        rad_bull = int(<span class="number">127</span> / <span class="number">2</span> * scale)</div><div class="line">        rad_ring = int(<span class="number">318</span> / <span class="number">2</span> * scale)</div><div class="line">        rad_double = int((<span class="number">3400</span> - <span class="number">160</span>) / <span class="number">2</span> * scale)</div><div class="line">        rad_triple = int((<span class="number">2140</span> - <span class="number">160</span>) / <span class="number">2</span> * scale)</div><div class="line">        width_rings = int(<span class="number">80</span> * scale)</div><div class="line">        line_thickness = int(<span class="number">12</span> * scale)</div><div class="line">        angle = <span class="number">360</span> // <span class="number">20</span> </div><div class="line">        angle_offset = <span class="number">9</span></div><div class="line"></div><div class="line">        <span class="comment">#rings</span></div><div class="line">        cv2.circle(IM, center, rad_bull, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),line_thickness)</div><div class="line">        cv2.circle(IM, center, rad_ring, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),line_thickness)</div><div class="line">        cv2.circle(IM, center, rad_double, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),line_thickness)</div><div class="line">        cv2.circle(IM, center, rad_double + width_rings, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),line_thickness)</div><div class="line">        cv2.circle(IM, center, rad_triple, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),line_thickness)</div><div class="line">        cv2.circle(IM, center, rad_triple + width_rings, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),line_thickness)</div><div class="line">        </div><div class="line">        <span class="comment">#lines  </span></div><div class="line">        line_shape = np.zeros(IM.shape,<span class="string">"uint8"</span>)</div><div class="line">        line_shape[:,(line_shape.shape[<span class="number">1</span>]//<span class="number">2</span>)-line_thickness:(line_shape.shape[<span class="number">1</span>]//<span class="number">2</span>)+line_thickness] = <span class="number">255</span></div><div class="line">        IM_temp = np.zeros(IM.shape,<span class="string">"uint8"</span>)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">360</span>,angle):</div><div class="line">            line_shape_rot = Image_Tools.rotateImage(line_shape,i + angle_offset)   </div><div class="line">            IM_temp = IM_temp + line_shape_rot</div><div class="line">        </div><div class="line">        <span class="comment">#restore bull</span></div><div class="line">        IM_mask = np.zeros(IM.shape,<span class="string">"uint8"</span>)</div><div class="line">        cv2.circle(IM_mask, center, rad_board, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">-1</span>)</div><div class="line">        cv2.circle(IM_mask, center, rad_ring, (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</div><div class="line">        IM = IM + (IM_temp * IM_mask)</div><div class="line">        </div><div class="line">        <span class="comment">#create Mask</span></div><div class="line">        IM_mask = np.zeros(IM.shape,<span class="string">"uint8"</span>)</div><div class="line">        cv2.circle(IM_mask, center, rad_board, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">-1</span>)</div><div class="line">        </div><div class="line">        <span class="comment">#make color</span></div><div class="line">        IM_color = np.repeat(IM[:, :, np.newaxis], <span class="number">3</span>, axis=<span class="number">2</span>)    </div><div class="line">        <span class="keyword">return</span> IM_color, IM_mask</div></pre></td></tr></table></figure>
+<p>The code produces the follwing digital dart board.<br><img src="/images/dart-12.png" alt=""></p>
+<h2 id="Putting-it-all-together"><a href="#Putting-it-all-together" class="headerlink" title="Putting it all together"></a>Putting it all together</h2><p>Last but not least our initial task was to find out where the arrow has landed and compute the resulting score.<br>Until know we have all the parts together and simply need the final step: Simply apply the same transformation of the dart board to the previously computed apex location.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /dart.py</span></div><div class="line"></div><div class="line">arrow_detector = Arrow_Detector()</div><div class="line">GUI.imShow(IM_ROI_ROTATED)</div><div class="line">cx,cy,angle,length,cross,IM_dot,IM_line = arrow_detector.getMetricOfArrow(IM_ROI_ROTATED)</div><div class="line">GUI.imShow(IM_dot)</div></pre></td></tr></table></figure>
+<p>The result looks like this:<br><img src="/images/dart-13.png" alt=""></p>
+<h2 id="Making-some-beatiful-output"><a href="#Making-some-beatiful-output" class="headerlink" title="Making some beatiful output"></a>Making some beatiful output</h2><p>As we all like visuality and beatiful outputs. Our very last (optional) step is to compute such an output</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># /dart.py</span></div><div class="line"></div><div class="line">score = dartboard.calcScore(angle,length)</div><div class="line">dartboard = Dartboard()</div><div class="line">IM_score = dartboard.drawScore(IM_final1,score)</div><div class="line">GUI.imShow(IM_score)</div></pre></td></tr></table></figure>
+<p>And here we have the final result.<br><strong><em>The score is 9!!</em></strong></p>
+<p><img src="/images/dart-14.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python-CV-OpenCV/" rel="tag"># Python CV OpenCV</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/08/install-theano-cuda-arch/" rel="next" title="How-To | Install Theano with Cuda-Support in Anaconda (Arch-Linux)">
+                <i class="fa fa-chevron-left"></i> How-To | Install Theano with Cuda-Support in Anaconda (Arch-Linux)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Matthias Hermann" />
+            
+              <p class="site-author-name" itemprop="name">Matthias Hermann</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:matthiashermann@outlook.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://twitter.com/twittadrock" target="_blank" title="Twitter">
+                    
+                      <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.linkedin.com/in/matthias-hermann-44746994/" target="_blank" title="LinkedIn">
+                    
+                      <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-setup"><span class="nav-number">1.</span> <span class="nav-text">The setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-starting-point"><span class="nav-number">2.</span> <span class="nav-text">The starting point</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Computing-the-dart-bounding-box"><span class="nav-number">3.</span> <span class="nav-text">Computing the dart bounding box</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Waiting-for-changes"><span class="nav-number">4.</span> <span class="nav-text">Waiting for changes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detecting-arrows"><span class="nav-number">5.</span> <span class="nav-text">Detecting arrows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Detect-scoring-zones"><span class="nav-number">6.</span> <span class="nav-text">Detect scoring zones</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Putting-it-all-together"><span class="nav-number">7.</span> <span class="nav-text">Putting it all together</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Making-some-beatiful-output"><span class="nav-number">8.</span> <span class="nav-text">Making some beatiful output</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Matthias Hermann</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
