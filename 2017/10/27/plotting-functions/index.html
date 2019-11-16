@@ -49,7 +49,8 @@
     
 </head>
 
-<body class="max-width mx-auto px3 ltr">    
+<body class="max-width mx-auto px3 ltr">
+    
       <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
@@ -179,7 +180,7 @@ H(X) = H_b(p) = -p \log_2 p -(1-p) \log_2 (1-p)</script><a id="more"></a>
 <blockquote><p>Function Plot is a plotting library built on top of D3.js used to render functions with little configuration (think of it as a clone of Google’s plotting utility: y=x2y=x2)</p>
 <footer><strong>Mauricio Poppe</strong><cite><a href="https://mauriciopoppe.github.io/function-plot/" target="_blank" rel="external">f(x)-Function Plot</a></cite></footer></blockquote> 
 <p>As Function Plotter is a JavaScript-Library we first have to embed custom JavaScript-Code into Hexo. This is done by the tags <code>{ % raw %}</code>and <code>{ % endraw %}</code>. Inside these tags we can embed arbitrary HTML-code.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123; % raw %&#125; //Remove space between &#123; and %</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://wzrd.in/standalone/function-plot@1.18.1"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">quadratic</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    functionPlot(&#123;</span></div><div class="line"><span class="undefined">    target: '#quadratic',</span></div><div class="line"><span class="undefined">    data: [&#123;</span></div><div class="line"><span class="undefined">        fn: 'x^2'</span></div><div class="line"><span class="undefined">        &#125;]</span></div><div class="line"><span class="undefined">    &#125;)</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">&#123; % endraw %&#125; //Remove space between &#123; and %</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123; % raw %&#125; //Remove space between &#123; and %</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://wzrd.in/standalone/function-plot@1.18.1"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">quadratic</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    functionPlot(&#123;</span></div><div class="line"><span class="javascript">    target: <span class="string">'#quadratic'</span>,</span></div><div class="line"><span class="undefined">    data: [&#123;</span></div><div class="line"><span class="javascript">        fn: <span class="string">'x^2'</span></span></div><div class="line"><span class="undefined">        &#125;]</span></div><div class="line"><span class="undefined">    &#125;)</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">&#123; % endraw %&#125; //Remove space between &#123; and %</div></pre></td></tr></table></figure>
 <p>This snippet produces the following really cool result.<br>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script src="https://wzrd.in/standalone/function-plot@1.18.1"></script>
@@ -322,23 +323,8 @@ H(X) = H_b(p) = -p \log_2 p -(1-p) \log_2 (1-p)&lt;/script&gt;"><i class="fab fa
 
 <!-- Baidu Analytics -->
 
-<!-- Disqus Comments -->
+<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
