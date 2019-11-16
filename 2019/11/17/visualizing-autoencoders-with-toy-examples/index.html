@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Unfortunately cannot embedd Ipython Notebooks at the moment..https://github.com/matherm/python-data-science/blob/master/visualize-autoencoder.ipynb Let’s have a try so.  y=\sum_{i=1}^n g(x_i)1234impor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What makes Autoencoders non-linear?">
+<meta property="og:url" content="http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/index.html">
+<meta property="og:site_name" content="MATH|erm">
+<meta property="og:description" content="Unfortunately cannot embedd Ipython Notebooks at the moment..https://github.com/matherm/python-data-science/blob/master/visualize-autoencoder.ipynb Let’s have a try so.  y=\sum_{i=1}^n g(x_i)1234impor">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_2_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_3_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_4_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_4_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_4_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_5_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_5_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_5_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_6_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_6_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_6_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_7_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_7_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_7_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_8_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_8_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_8_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_9_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_9_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_9_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_10_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_10_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_10_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_11_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_11_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_11_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_12_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_12_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_12_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_14_1.png">
+<meta property="og:updated_time" content="2019-11-16T17:58:12.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What makes Autoencoders non-linear?">
+<meta name="twitter:description" content="Unfortunately cannot embedd Ipython Notebooks at the moment..https://github.com/matherm/python-data-science/blob/master/visualize-autoencoder.ipynb Let’s have a try so.  y=\sum_{i=1}^n g(x_i)1234impor">
+<meta name="twitter:image" content="http://yoursite.com/assets/code/visualize-autoencoder_files/visualize-autoencoder_2_0.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/wuerfel.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/wuerfel.png">
+          
+        
+    
+    <!-- title -->
+    <title>What makes Autoencoders non-linear?</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/research/">Research</a></li>
+         
+          <li><a href="https://scholar.google.de/citations?user=RFq3lLcAAAAJ">Publications</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/11/02/visualizing-data-science/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&text=What makes Autoencoders non-linear?"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&is_video=false&description=What makes Autoencoders non-linear?"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=What makes Autoencoders non-linear?&body=Check out this article: http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&name=What makes Autoencoders non-linear?&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Test"><span class="toc-number">1.</span> <span class="toc-text">Test</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        What makes Autoencoders non-linear?
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">MATH|erm</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-17T17:21:01.000Z" itemprop="datePublished">2019-11-17</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Unfortunately cannot embedd Ipython Notebooks at the moment..<br><a href="https://github.com/matherm/python-data-science/blob/master/visualize-autoencoder.ipynb" target="_blank" rel="external">https://github.com/matherm/python-data-science/blob/master/visualize-autoencoder.ipynb</a></p>
+<p>Let’s have a try so.</p>
+<script type="math/tex; mode=display">
+y=\sum_{i=1}^n g(x_i)</script><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> torch</div><div class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</div><div class="line"><span class="keyword">from</span> ummon <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Autoencoder</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super().__init__()</div><div class="line">        self.encoder = nn.Linear(<span class="number">2</span>, <span class="number">3</span>)</div><div class="line">        self.decoder = nn.Linear(<span class="number">3</span>, <span class="number">2</span>)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="comment"># share the weights</span></div><div class="line">        <span class="comment"># with torch.no_grad():</span></div><div class="line">        <span class="comment">#    self.decoder.weight.data = self.encoder.weight.data.transpose(0, 1)</span></div><div class="line">        </div><div class="line">        <span class="comment"># autoencode</span></div><div class="line">        x = self.encoder(x)</div><div class="line">        x = nn.ReLU()(x)</div><div class="line">        x = self.decoder(x)</div><div class="line">        <span class="keyword">return</span> x</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, dl)</span>:</span></div><div class="line">        loss = nn.MSELoss()</div><div class="line">        opt = torch.optim.Adam(self.parameters())</div><div class="line">        KamikazeTrainer(Logger(), self, loss, opt).fit(dl, epochs=<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> self</div><div class="line">    </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AutoencoderNoBias</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super().__init__()</div><div class="line">        self.encoder = nn.Linear(<span class="number">2</span>, <span class="number">3</span>, bias=<span class="keyword">False</span>)</div><div class="line">        self.decoder = nn.Linear(<span class="number">3</span>, <span class="number">2</span>, bias=<span class="keyword">False</span>)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="comment"># share the weights</span></div><div class="line">        <span class="comment"># with torch.no_grad():</span></div><div class="line">        <span class="comment">#    self.decoder.weight.data = self.encoder.weight.data.transpose(0, 1)</span></div><div class="line">        </div><div class="line">        <span class="comment"># autoencode</span></div><div class="line">        x = self.encoder(x)</div><div class="line">        x = nn.ReLU()(x)</div><div class="line">        x = self.decoder(x)</div><div class="line">        <span class="keyword">return</span> x</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, dl)</span>:</span></div><div class="line">        loss = nn.MSELoss()</div><div class="line">        opt = torch.optim.Adam(self.parameters())</div><div class="line">        KamikazeTrainer(Logger(), self, loss, opt).fit(dl, epochs=<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> self</div><div class="line">    </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TanhAutoencoder</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super().__init__()</div><div class="line">        self.encoder = nn.Linear(<span class="number">2</span>, <span class="number">3</span>)</div><div class="line">        self.decoder = nn.Linear(<span class="number">3</span>, <span class="number">2</span>)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="comment"># share the weights</span></div><div class="line">        <span class="comment"># with torch.no_grad():</span></div><div class="line">        <span class="comment">#    self.decoder.weight.data = self.encoder.weight.data.transpose(0, 1)</span></div><div class="line">        </div><div class="line">        <span class="comment"># autoencode</span></div><div class="line">        x = self.encoder(x)</div><div class="line">        x = nn.Tanh()(x)</div><div class="line">        x = self.decoder(x)</div><div class="line">        <span class="keyword">return</span> x</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, dl)</span>:</span></div><div class="line">        loss = nn.MSELoss()</div><div class="line">        opt = torch.optim.Adam(self.parameters())</div><div class="line">        KamikazeTrainer(Logger(), self, loss, opt).fit(dl, epochs=<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> self</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TanhAutoencoderNoBias</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super().__init__()</div><div class="line">        self.encoder = nn.Linear(<span class="number">2</span>, <span class="number">3</span>, bias=<span class="keyword">False</span>)</div><div class="line">        self.decoder = nn.Linear(<span class="number">3</span>, <span class="number">2</span>, bias=<span class="keyword">False</span>)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="comment"># share the weights</span></div><div class="line">        <span class="comment"># with torch.no_grad():</span></div><div class="line">        <span class="comment">#    self.decoder.weight.data = self.encoder.weight.data.transpose(0, 1)</span></div><div class="line">        </div><div class="line">        <span class="comment"># autoencode</span></div><div class="line">        x = self.encoder(x)</div><div class="line">        x = nn.Tanh()(x)</div><div class="line">        x = self.decoder(x)</div><div class="line">        <span class="keyword">return</span> x</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, dl)</span>:</span></div><div class="line">        loss = nn.MSELoss()</div><div class="line">        opt = torch.optim.Adam(self.parameters())</div><div class="line">        KamikazeTrainer(Logger(), self, loss, opt).fit(dl, epochs=<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> self</div><div class="line">    </div><div class="line">    </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearAutoencoder</span><span class="params">(nn.Module)</span>:</span></div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        super().__init__()</div><div class="line">        self.encoder = nn.Linear(<span class="number">2</span>, <span class="number">3</span>)</div><div class="line">        self.decoder = nn.Linear(<span class="number">3</span>, <span class="number">2</span>)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="comment"># share the weights</span></div><div class="line">        <span class="comment"># with torch.no_grad():</span></div><div class="line">        <span class="comment">#    self.decoder.weight.data = self.encoder.weight.data.transpose(0, 1)</span></div><div class="line">        </div><div class="line">        <span class="comment"># autoencode</span></div><div class="line">        x = self.encoder(x)</div><div class="line">        x = self.decoder(x)</div><div class="line">        <span class="keyword">return</span> x</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, dl)</span>:</span></div><div class="line">        loss = nn.MSELoss()</div><div class="line">        opt = torch.optim.Adam(self.parameters())</div><div class="line">        KamikazeTrainer(Logger(), self, loss, opt).fit(dl, epochs=<span class="number">60</span>)</div><div class="line">        <span class="keyword">return</span> self</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">x = np.linspace(<span class="number">-1</span>, <span class="number">1</span>, <span class="number">2000</span>)</div><div class="line">y = <span class="number">-1</span> * (<span class="number">-400</span>*x**<span class="number">5</span>+<span class="number">450</span>*x**<span class="number">3</span><span class="number">-50</span>*x**<span class="number">2</span> + <span class="number">4</span>) + np.random.normal(<span class="number">0</span>, <span class="number">1</span>, x.shape[<span class="number">0</span>])</div><div class="line"></div><div class="line">data = np.array((x, y)).T.astype(np.float32)</div><div class="line">data = data - data.mean(axis=<span class="number">0</span>)</div><div class="line">data = data / data.std(axis=<span class="number">0</span>)</div><div class="line"></div><div class="line">X, y = data[:,<span class="number">0</span>], data[:,<span class="number">1</span>]</div><div class="line">plt.plot(X, y, <span class="string">'o'</span>)</div><div class="line"></div><div class="line">p = np.random.permutation(data.shape[<span class="number">0</span>])</div><div class="line">X, X_val = torch.from_numpy(data[p[:<span class="number">1700</span>]]), torch.from_numpy(data[p[<span class="number">1700</span>:]])</div><div class="line">ds = torch.utils.data.TensorDataset(X, X)</div><div class="line">dl = torch.utils.data.DataLoader(ds, batch_size=<span class="number">32</span>, shuffle=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_2_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">a=<span class="number">0.05</span></div><div class="line">b=<span class="number">0.10</span></div><div class="line">th=np.linspace(<span class="number">0</span>, <span class="number">50</span>, <span class="number">2000</span>)  </div><div class="line">x=a*np.exp(b*th)*np.cos(th)</div><div class="line">y=a*np.exp(b*th)*np.sin(th)</div><div class="line"></div><div class="line">data = np.array((x, y)).T.astype(np.float32)</div><div class="line">data = data - data.mean(axis=<span class="number">0</span>)</div><div class="line">data = data / data.std(axis=<span class="number">0</span>)</div><div class="line"></div><div class="line">X, y = data[:,<span class="number">0</span>], data[:,<span class="number">1</span>]</div><div class="line">plt.plot(X, y, <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">p = np.random.permutation(data.shape[<span class="number">0</span>])</div><div class="line">X, X_val = torch.from_numpy(data[p[:<span class="number">1700</span>]]), torch.from_numpy(data[p[<span class="number">1700</span>:]])</div><div class="line">ds = torch.utils.data.TensorDataset(X, X)</div><div class="line">dl_spiral = torch.utils.data.DataLoader(ds, batch_size=<span class="number">32</span>, shuffle=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_3_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = Autoencoder().fit(dl)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>), np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_4_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_4_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_4_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = AutoencoderNoBias().fit(dl)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>), np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_5_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_5_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_5_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = Autoencoder().fit(dl_spiral)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-4</span>, <span class="number">4</span>,<span class="number">500</span>), np.linspace(<span class="number">-4</span>, <span class="number">4</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_6_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_6_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_6_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = AutoencoderNoBias().fit(dl_spiral)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-4</span>, <span class="number">4</span>,<span class="number">500</span>), np.linspace(<span class="number">-4</span>, <span class="number">4</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_7_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_7_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_7_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = LinearAutoencoder().fit(dl)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>), np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_8_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_8_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_8_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = LinearAutoencoder().fit(dl_spiral)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>), np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_9_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_9_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_9_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = TanhAutoencoder().fit(dl)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>), np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_10_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_10_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_10_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = TanhAutoencoder().fit(dl_spiral)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-4</span>, <span class="number">4</span>,<span class="number">500</span>), np.linspace(<span class="number">-4</span>, <span class="number">4</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_11_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_11_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_11_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">torch.manual_seed(<span class="number">1337</span>)</div><div class="line"></div><div class="line">model = TanhAutoencoderNoBias().fit(dl_spiral)</div><div class="line"></div><div class="line">X_hat = model(X_val).detach().numpy()</div><div class="line">plt.plot(X_hat[:,<span class="number">0</span>], X_hat[:,<span class="number">1</span>], <span class="string">'o'</span>)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">x, y = np.linspace(<span class="number">-4</span>, <span class="number">4</span>,<span class="number">500</span>), np.linspace(<span class="number">-4</span>, <span class="number">4</span>,<span class="number">500</span>)</div><div class="line">points = np.transpose([np.tile(x, len(y)), np.repeat(y, len(x))]).astype(np.float32)</div><div class="line"></div><div class="line">points_hat =  model(torch.from_numpy(points)).detach().numpy()</div><div class="line">losses = np.linalg.norm(points_hat - points, axis=<span class="number">1</span>)</div><div class="line"></div><div class="line">result_im = np.rot90(losses.reshape(<span class="number">500</span>,<span class="number">-1</span>))</div><div class="line"></div><div class="line">plt.imshow(result_im)</div><div class="line">plt.show()</div><div class="line"></div><div class="line">result_im_bin = result_im.copy()</div><div class="line">result_im_bin[result_im &gt;= <span class="number">1e-1</span>] = <span class="number">0</span></div><div class="line">plt.imshow(result_im_bin)</div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_12_0.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_12_1.png" alt="png"></p>
+<p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_12_2.png" alt="png"></p>
+<h2 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Z = np.zeros((<span class="number">200</span>, <span class="number">200</span>))</div><div class="line"><span class="keyword">for</span> ii,i <span class="keyword">in</span> enumerate(np.linspace(<span class="number">-2</span>, <span class="number">2</span>,<span class="number">200</span>)):</div><div class="line">    <span class="keyword">for</span> jj,j <span class="keyword">in</span> enumerate(np.linspace(<span class="number">2</span>, <span class="number">-2</span>,<span class="number">200</span>)):</div><div class="line">        inpt = torch.from_numpy(np.array([[i,j]])).float()</div><div class="line">        outpt = model(inpt).detach().numpy()</div><div class="line">        Z[ii,jj] = np.linalg.norm(inpt.numpy() - outpt)</div><div class="line">plt.imshow(Z)</div></pre></td></tr></table></figure>
+<pre><code>&lt;matplotlib.image.AxesImage at 0x7f55020a6978&gt;
+</code></pre><p><img src="/assets/code/visualize-autoencoder_files/visualize-autoencoder_14_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/research/">Research</a></li>
+         
+          <li><a href="https://scholar.google.de/citations?user=RFq3lLcAAAAJ">Publications</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Test"><span class="toc-number">1.</span> <span class="toc-text">Test</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&text=What makes Autoencoders non-linear?"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&is_video=false&description=What makes Autoencoders non-linear?"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=What makes Autoencoders non-linear?&body=Check out this article: http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&title=What makes Autoencoders non-linear?"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/17/visualizing-autoencoders-with-toy-examples/&name=What makes Autoencoders non-linear?&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Matthias Hermann
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/research/">Research</a></li>
+         
+          <li><a href="https://scholar.google.de/citations?user=RFq3lLcAAAAJ">Publications</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
