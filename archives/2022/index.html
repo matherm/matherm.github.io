@@ -47,8 +47,7 @@
     
 </head>
 
-<body class="max-width mx-auto px3 ltr">
-    
+<body class="max-width mx-auto px3 ltr">    
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="content index py4">
         
           <header id="header">
@@ -94,6 +93,30 @@
       
       
         <h2>2022</h2>
+      
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2022-07-15T09:02:21.000Z" itemprop="datePublished">2022-07-15</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/2022/07/15/MathJax-Config/">MathJax-Config</a>
+    
+
+
+</span>
+      </li>
+    
+      
+      
+      
       
       <li class="post-item">
         
@@ -161,8 +184,23 @@
 
 <!-- Baidu Analytics -->
 
-<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<!-- Disqus Comments -->
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
