@@ -49,8 +49,7 @@
     
 </head>
 
-<body class="max-width mx-auto px3 ltr">
-    
+<body class="max-width mx-auto px3 ltr">    
       <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
@@ -61,13 +60,13 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/research/">Research</a></li>
-         
           <li><a href="https://scholar.google.de/citations?user=RFq3lLcAAAAJ">Publications</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/privacy/">Data privacy</a></li>
         
       </ul>
     </span>
@@ -185,13 +184,13 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/research/">Research</a></li>
-         
           <li><a href="https://scholar.google.de/citations?user=RFq3lLcAAAAJ">Publications</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/privacy/">Data privacy</a></li>
         
       </ul>
     </div>
@@ -237,13 +236,13 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
-          <li><a href="/research/">Research</a></li>
-         
           <li><a href="https://scholar.google.de/citations?user=RFq3lLcAAAAJ">Publications</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/privacy/">Data privacy</a></li>
         
       </ul>
     </nav>
@@ -288,8 +287,23 @@
 
 <!-- Baidu Analytics -->
 
-<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<!-- Disqus Comments -->
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
