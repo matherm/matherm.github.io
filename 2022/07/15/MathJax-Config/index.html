@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="What about MathJax?123456789101112131415&amp;lt;script type=&quot;text/x-mathjax-config&quot;&amp;gt;    MathJax.Hub.Config(&amp;#123;        tex2jax: &amp;#123;            inlineMath: [ [&quot;$&quot;,&quot;$&quot;], [&quot;\\(&quot;,&quot;\\)&quot;] ],">
+    <meta name="description" content="What about MathJax? y=\sum_{i=1}^n g(x_i)      MathJax.Hub.Config({         tex2jax: {             inlineMath: [ [&quot;$&quot;,&quot;$&quot;], [&quot;\\(&quot;,&quot;\\)&quot;] ],             skipTags: [&apos;script&apos;, &apos;noscript&apos;, &apos;style&apos;, &apos;text">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MathJax-Config">
 <meta property="og:url" content="http://yoursite.com/2022/07/15/MathJax-Config/index.html">
 <meta property="og:site_name" content="MATH|erm">
-<meta property="og:description" content="What about MathJax?123456789101112131415&amp;lt;script type=&quot;text/x-mathjax-config&quot;&amp;gt;    MathJax.Hub.Config(&amp;#123;        tex2jax: &amp;#123;            inlineMath: [ [&quot;$&quot;,&quot;$&quot;], [&quot;\\(&quot;,&quot;\\)&quot;] ],">
+<meta property="og:description" content="What about MathJax? y=\sum_{i=1}^n g(x_i)      MathJax.Hub.Config({         tex2jax: {             inlineMath: [ [&quot;$&quot;,&quot;$&quot;], [&quot;\\(&quot;,&quot;\\)&quot;] ],             skipTags: [&apos;script&apos;, &apos;noscript&apos;, &apos;style&apos;, &apos;text">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2022-07-15T09:03:23.024Z">
+<meta property="og:updated_time" content="2022-07-15T09:06:15.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MathJax-Config">
-<meta name="twitter:description" content="What about MathJax?123456789101112131415&amp;lt;script type=&quot;text/x-mathjax-config&quot;&amp;gt;    MathJax.Hub.Config(&amp;#123;        tex2jax: &amp;#123;            inlineMath: [ [&quot;$&quot;,&quot;$&quot;], [&quot;\\(&quot;,&quot;\\)&quot;] ],">
+<meta name="twitter:description" content="What about MathJax? y=\sum_{i=1}^n g(x_i)      MathJax.Hub.Config({         tex2jax: {             inlineMath: [ [&quot;$&quot;,&quot;$&quot;], [&quot;\\(&quot;,&quot;\\)&quot;] ],             skipTags: [&apos;script&apos;, &apos;noscript&apos;, &apos;style&apos;, &apos;text">
     
     
         
@@ -48,7 +48,8 @@
     
 </head>
 
-<body class="max-width mx-auto px3 ltr">    
+<body class="max-width mx-auto px3 ltr">
+    
       <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
@@ -140,7 +141,25 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="What-about-MathJax"><a href="#What-about-MathJax" class="headerlink" title="What about MathJax?"></a>What about MathJax?</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/x-mathjax-config"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    MathJax.Hub.Config(&#123;</span></div><div class="line"><span class="undefined">        tex2jax: &#123;</span></div><div class="line"><span class="javascript">            inlineMath: [ [<span class="string">"$"</span>,<span class="string">"$"</span>], [<span class="string">"\\("</span>,<span class="string">"\\)"</span>] ],</span></div><div class="line"><span class="javascript">            skipTags: [<span class="string">'script'</span>, <span class="string">'noscript'</span>, <span class="string">'style'</span>, <span class="string">'textarea'</span>, <span class="string">'pre'</span>, <span class="string">'code'</span>],</span></div><div class="line"><span class="javascript">            processEscapes: <span class="literal">true</span></span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">    &#125;);</span></div><div class="line"><span class="javascript">    MathJax.Hub.Queue(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="javascript">        <span class="keyword">var</span> all = MathJax.Hub.getAllJax();</span></div><div class="line"><span class="javascript">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; all.length; ++i)</span></div><div class="line"><span class="javascript">            all[i].SourceElement().parentNode.className += <span class="string">' has-jax'</span>;</span></div><div class="line"><span class="undefined">    &#125;);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+    <h1 id="What-about-MathJax"><a href="#What-about-MathJax" class="headerlink" title="What about MathJax?"></a>What about MathJax?</h1><script type="math/tex; mode=display">
+y=\sum_{i=1}^n g(x_i)</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/x-mathjax-config"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    MathJax.Hub.Config(&#123;</span></div><div class="line"><span class="undefined">        tex2jax: &#123;</span></div><div class="line"><span class="undefined">            inlineMath: [ ["$","$"], ["\\(","\\)"] ],</span></div><div class="line"><span class="undefined">            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],</span></div><div class="line"><span class="undefined">            processEscapes: true</span></div><div class="line"><span class="undefined">        &#125;</span></div><div class="line"><span class="undefined">    &#125;);</span></div><div class="line"><span class="undefined">    MathJax.Hub.Queue(function() &#123;</span></div><div class="line"><span class="undefined">        var all = MathJax.Hub.getAllJax();</span></div><div class="line"><span class="undefined">        for (var i = 0; i &lt; all.length; ++i)</span></div><div class="line"><span class="undefined">            all[i].SourceElement().parentNode.className += ' has-jax';</span></div><div class="line"><span class="undefined">    &#125;);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 
   </div>
 </article>
@@ -259,23 +278,8 @@
 
 <!-- Baidu Analytics -->
 
-<!-- Disqus Comments -->
+<!-- Disqus Comments --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
